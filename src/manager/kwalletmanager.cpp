@@ -113,10 +113,11 @@ void KWalletManager::configUI() {
     _managerWidget = new KWalletManagerWidget(this);
 
     updateWalletDisplay();
-    setCentralWidget(_managerWidget);
+	setCentralWidget(_managerWidget);
     setAutoSaveSettings(QStringLiteral("MainWindow"), true);
     QFontMetrics fm = fontMetrics();
     _managerWidget->setMinimumSize(16*fm.height(), 18*fm.height());
+	connect(_managerWidget, SIGNAL(pushCreateWallet()), this, SLOT(createWallet()));
 
     m_kwalletdModule = new org::kde::KWallet(QStringLiteral("org.kde.kwalletd5"), QStringLiteral("/modules/kwalletd5"), QDBusConnection::sessionBus());
     connect(QDBusConnection::sessionBus().interface(), SIGNAL(serviceOwnerChanged(QString,QString,QString)), this,
@@ -368,7 +369,7 @@ void KWalletManager::createWallet()
     }
 }
 
-void KWalletManager::deleteWallet()
+void KWalletManager::deleteWallet() //REPEATED
 {
     QString walletName = _managerWidget->activeWalletName();
     if (walletName.isEmpty()) {

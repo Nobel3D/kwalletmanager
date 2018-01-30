@@ -34,6 +34,10 @@ KWalletManagerWidget::KWalletManagerWidget(QWidget *parent, Qt::WindowFlags flag
     setFaceType(Auto);
     setAcceptDrops(true);
 
+	_createWallet = new KPageWidgetItem(nullptr,i18n("New Wallet"));
+	_createWallet->setIcon(QIcon::fromTheme(QStringLiteral("list-add")));
+	addPage(_createWallet);
+
     connect(this, &KWalletManagerWidget::currentPageChanged, this, &KWalletManagerWidget::onCurrentPageChanged);
 }
 
@@ -44,7 +48,11 @@ KWalletManagerWidget::~KWalletManagerWidget()
 
 void KWalletManagerWidget::onCurrentPageChanged(KPageWidgetItem *current, KPageWidgetItem *before)
 {
-
+	if(current == _createWallet)
+	{
+		emit pushCreateWallet();
+		this->setCurrentPage(before);
+	}
 }
 
 void KWalletManagerWidget::updateWalletDisplay(QString selectWallet /* = QString() */)

@@ -21,6 +21,7 @@
 #define KWALLETMANAGER_H
 #include <QtCore/QObject>
 #include <kxmlguiwindow.h>
+#include <QPushButton>
 
 class KWalletManagerWidget;
 class KStatusNotifierItem;
@@ -80,6 +81,7 @@ private:
     bool _shuttingDown;
     KWalletManagerWidget *_managerWidget;
     OrgKdeKWalletInterface *m_kwalletdModule;
+	QPushButton* _pushCreateWallet;
     QList<KXmlGuiWindow *> _windows;
     bool _kwalletdLaunch;
     QAction *_walletsExportAction = nullptr;

@@ -48,6 +48,9 @@ protected:
     void dragMoveEvent(QDragMoveEvent *e) override;
     void dropEvent(QDropEvent *e) override;
 
+signals:
+	void pushCreateWallet();
+
 private Q_SLOTS:
     void onCurrentPageChanged(KPageWidgetItem *, KPageWidgetItem *);
 
@@ -56,6 +59,7 @@ private:
 
     typedef QHash<QString, KWalletManagerWidgetItem *> WalletPagesHash;
     WalletPagesHash _walletPages;
+	KPageWidgetItem* _createWallet;
 };
 
 #endif // KWALLETMANAGERWIDGET_H

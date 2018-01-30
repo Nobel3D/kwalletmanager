@@ -84,7 +84,7 @@ void KWalletFolderItem::refreshItemsCount()
     }
     setText(0, QStringLiteral("%1 (%2)").arg(_name).arg(visibleLeafCount));
 }
-
+/*
 KWalletContainerItem *KWalletFolderItem::getContainer(KWallet::Wallet::EntryType type)
 {
     for (int i = 0; i < childCount(); ++i) {
@@ -98,7 +98,7 @@ KWalletContainerItem *KWalletFolderItem::getContainer(KWallet::Wallet::EntryType
     }
     return nullptr;
 }
-
+*/
 bool KWalletFolderItem::contains(const QString &key)
 {
     return (getItem(key) != nullptr);
@@ -107,14 +107,9 @@ bool KWalletFolderItem::contains(const QString &key)
 QTreeWidgetItem *KWalletFolderItem::getItem(const QString &key)
 {
     for (int i = 0; i < childCount(); ++i) {
-        KWalletContainerItem *ci = dynamic_cast<KWalletContainerItem *>(child(i));
-        if (!ci) {
-            continue;
-        }
-        QTreeWidgetItem *tmp = ci->getItem(key);
-        if (tmp) {
-            return tmp;
-        }
+		KWalletEntryItem *ei = dynamic_cast<KWalletEntryItem *>(child(i));
+		if(ei->name() == key)
+			return ei;
     }
     return nullptr;
 }
@@ -138,6 +133,7 @@ KWalletFolderItem::~KWalletFolderItem()
  *  KWalletContainerItem - ListView items to represent kwallet containers, i.e.
  *  passwords, maps, ...
  */
+/*
 KWalletContainerItem::KWalletContainerItem(QTreeWidgetItem *parent, const QString &name, KWallet::Wallet::EntryType entryType)
     : QTreeWidgetItem(parent, QStringList() << name, KWalletContainerItemClass), _type(entryType)
 {
@@ -168,12 +164,12 @@ QTreeWidgetItem *KWalletContainerItem::getItem(const QString &key)
     }
     return nullptr;
 }
-
+*/
 /****************
  *  KWalletEntryItem - ListView items to represent kwallet entries
  */
 KWalletEntryItem::KWalletEntryItem(KWallet::Wallet *w, QTreeWidgetItem *parent, const QString &ename)
-    : QTreeWidgetItem(parent, QStringList() << ename, KWalletEntryItemClass), _wallet(w), m_name(ename)
+	: QTreeWidgetItem(parent, QStringList() << ename, KWalletEntryItemClass), _wallet(w), m_name(ename)
 {
     setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsDragEnabled | Qt::ItemIsEnabled);
 }
@@ -534,10 +530,10 @@ QMimeData *KWalletEntryList::itemMimeData(const QTreeWidgetItem *i) const
         if (!ei) {
             return nullptr;
         }
-        KWalletContainerItem *ci = dynamic_cast<KWalletContainerItem *>(ei->parent());
+		/*KWalletContainerItem *ci = dynamic_cast<KWalletContainerItem *>(ei->parent());
         if (!ci) {
             return nullptr;
-        }
+		}*/
         sd = new QMimeData();
         QByteArray a;
         QDataStream ds(&a, QIODevice::WriteOnly);
@@ -545,7 +541,7 @@ QMimeData *KWalletEntryList::itemMimeData(const QTreeWidgetItem *i) const
         ds.setVersion(QDataStream::Qt_3_1);
         ds << KWALLETENTRYMAGIC;
         ds << ei->text(0);
-        ds << ci->entryType();
+		ds << ei->entryType();
         QByteArray value;
         ei->_wallet->readEntry(i->text(0), value);
         ds << value;

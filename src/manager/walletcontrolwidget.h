@@ -45,6 +45,7 @@ public Q_SLOTS:
     void updateWalletDisplay();
     void onDisconnectApplication();
     void onChangePassword();
+	void onRemoveWallet();
 
 protected:
     void hideEvent(QHideEvent *) override;

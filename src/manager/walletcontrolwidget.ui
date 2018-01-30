@@ -11,7 +11,16 @@
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
-   <property name="margin">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
     <number>0</number>
    </property>
    <item>
@@ -57,6 +66,19 @@
        <property name="text">
         <string>Change Password...</string>
        </property>
+       <property name="icon">
+        <iconset theme="password-copy"/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="_removeWallet">
+       <property name="text">
+        <string>&amp;Delete Wallet...</string>
+       </property>
+       <property name="icon">
+        <iconset theme="delete"/>
+       </property>
       </widget>
      </item>
     </layout>
@@ -69,14 +91,22 @@
      <widget class="QWidget" name="_contentsTab">
       <attribute name="icon">
        <iconset theme="wallet-closed">
-        <normaloff/>
-       </iconset>
+        <normaloff>.</normaloff>.</iconset>
       </attribute>
       <attribute name="title">
        <string>Contents</string>
       </attribute>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -97,7 +127,16 @@
           <number>0</number>
          </property>
          <layout class="QVBoxLayout" name="_editorFrameLayout">
-          <property name="margin">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
            <number>0</number>
           </property>
          </layout>
@@ -108,14 +147,22 @@
      <widget class="QWidget" name="_appsTab">
       <attribute name="icon">
        <iconset theme="start-here-kde">
-        <normaloff/>
-       </iconset>
+        <normaloff>.</normaloff>.</iconset>
       </attribute>
       <attribute name="title">
        <string>Applications</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -130,7 +177,16 @@
           <number>0</number>
          </property>
          <layout class="QVBoxLayout" name="_applicationsFrameLayout">
-          <property name="margin">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
            <number>0</number>
           </property>
          </layout>
@@ -163,8 +219,8 @@
    <slot>onOpenClose()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>258</x>
-     <y>22</y>
+     <x>243</x>
+     <y>23</y>
     </hint>
     <hint type="destinationlabel">
      <x>10</x>
@@ -179,8 +235,8 @@
    <slot>onChangePassword()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>349</x>
-     <y>16</y>
+     <x>564</x>
+     <y>17</y>
     </hint>
     <hint type="destinationlabel">
      <x>301</x>
@@ -188,9 +244,26 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>_removeWallet</sender>
+   <signal>clicked()</signal>
+   <receiver>WalletControlWidget</receiver>
+   <slot>onRemoveWallet()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>616</x>
+     <y>16</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>671</x>
+     <y>710</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>onOpenClose()</slot>
   <slot>onChangePassword()</slot>
+  <slot>onRemoveWallet()</slot>
  </slots>
 </ui>

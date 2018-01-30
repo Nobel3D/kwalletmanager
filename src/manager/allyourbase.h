@@ -45,7 +45,7 @@ enum KWalletListItemClasses {
 class KWalletEntryItem : public QTreeWidgetItem
 {
 public:
-    KWalletEntryItem(KWallet::Wallet *w, QTreeWidgetItem *parent, const QString &ename);
+	KWalletEntryItem(KWallet::Wallet *w, QTreeWidgetItem *parent, const QString &ename);
     virtual ~KWalletEntryItem();
 
     const QString &name() const
@@ -55,6 +55,7 @@ public:
     void setName(const QString &n);
     // Cancel renaming
     void restoreName();
+	KWallet::Wallet::EntryType entryType() const { return _wallet->entryType(m_name); }
 
 public:
     KWallet::Wallet *_wallet;
@@ -63,7 +64,7 @@ private:
     void setText(int, const QString &) {} // forbidden
     QString m_name;
 };
-
+/*
 class KWalletContainerItem : public QTreeWidgetItem
 {
 public:
@@ -78,7 +79,7 @@ public:
 private:
     KWallet::Wallet::EntryType _type;
 };
-
+*/
 class KWalletFolderItem : public QTreeWidgetItem
 {
 public:
@@ -89,7 +90,7 @@ public:
 
     QString name() const;
     void refresh();
-    KWalletContainerItem *getContainer(KWallet::Wallet::EntryType type);
+	//KWalletContainerItem *getContainer(KWallet::Wallet::EntryType type);
     QPixmap getFolderIcon(KIconLoader::Group group);
     bool contains(const QString &itemKey);
     QTreeWidgetItem *getItem(const QString &itemKey);

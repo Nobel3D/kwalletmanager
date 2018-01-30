@@ -19,6 +19,7 @@ set(kwalletmanager_SRCS
     authorizedappmodel.cpp
     authorizedapplicationstable.cpp
     revokeauthbutton.cpp
+    kwalletmanagerinputentry.cpp
 )
 
 qt5_add_dbus_interface(kwalletmanager_SRCS
@@ -30,6 +31,7 @@ ki18n_wrap_ui(kwalletmanager_SRCS
     kbetterthankdialogbase.ui
     walletcontrolwidget.ui
     applicationsmanager.ui
+    kwalletmanagerinputentry.ui
 )
 
 

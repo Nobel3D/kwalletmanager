@@ -55,6 +55,9 @@ int main(int argc, char **argv)
                  QString(),
                  QStringLiteral("http://utils.kde.org/projects/kwalletmanager"));
 
+	aboutData.addAuthor(i18n("Luca Gasperini"),
+						i18n("Developer, user interface refactoring"),
+						QStringLiteral("info@xsoftware.eu"));
     aboutData.addAuthor(i18n("Valentin Rusu"),
                         i18n("Maintainer, user interface refactoring"),
                         QStringLiteral("kde@rusu.info"));
