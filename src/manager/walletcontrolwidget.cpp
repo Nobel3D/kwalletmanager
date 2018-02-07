@@ -20,6 +20,7 @@
 #include "walletcontrolwidget.h"
 #include "kwalleteditor.h"
 #include "applicationsmanager.h"
+#include "wingenerate.h"
 
 #include <klocalizedstring.h>
 #include <kmessagebox.h>
@@ -195,4 +196,10 @@ void WalletControlWidget::onRemoveWallet() //REPEATED
 	if (rc != 0) {
 		KMessageBox::sorry(this, i18n("Unable to delete the wallet. Error code was %1.", rc));
 	}
+}
+
+void WalletControlWidget::onGeneratePassword()
+{
+	winGenerate* win = new winGenerate(this);
+	win->show();
 }

@@ -27,6 +27,7 @@
 #include <kxmlguiwindow.h>
 #include "registercreateactionmethod.h"
 #include <QLabel>
+#include <QPushButton>
 
 class KActionCollection;
 class QMenu;
@@ -118,6 +119,7 @@ private:
     // only the most recent map.
     KWMapEditor *_mapEditor;
     QCheckBox *_mapEditorShowHide;
+	QPushButton* _genPassword;
     bool _newWallet;
     QMenu *_contextMenu;
     QTreeWidgetItem *_displayedItem; // used to find old item when selection just changed
